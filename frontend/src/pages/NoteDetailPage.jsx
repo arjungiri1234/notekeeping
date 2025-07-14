@@ -1,4 +1,3 @@
-
 import { useEffect } from "react";
 import { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
@@ -18,7 +17,7 @@ const NoteDetailPage = () => {
   useEffect(() => {
     const fetchNote = async () => {
       try {
-        const res = await api.get(`/notes/${id}`, note);
+        const res = await api.get(`/notes/${id}`);
         setNote(res.data);
       } catch (error) {
         console.log("Error in fetching note", error);
@@ -36,7 +35,7 @@ const NoteDetailPage = () => {
 
     try {
       await api.delete(`/notes/${id}`);
-      toast.success("Your note is deleted.");
+      toast.success("Note deleted");
       navigate("/");
     } catch (error) {
       console.log("Error deleting the note:", error);
@@ -46,7 +45,7 @@ const NoteDetailPage = () => {
 
   const handleSave = async () => {
     if (!note.title.trim() || !note.content.trim()) {
-      toast.error("Both fields are required");
+      toast.error("Please add a title or content");
       return;
     }
 
@@ -68,14 +67,6 @@ const NoteDetailPage = () => {
     return (
       <div className="min-h-screen bg-base-200 flex items-center justify-center">
         <LoaderIcon className="animate-spin size-10" />
-      </div>
-    );
-  }
-
-    if (!note) {
-    return (
-      <div className="min-h-screen flex items-center justify-center text-red-500">
-        Failed to load note.
       </div>
     );
   }

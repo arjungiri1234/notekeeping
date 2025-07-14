@@ -1,20 +1,20 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-//firts we create a schema
-// then we create model based  of that schema
+// 1st step: You need to create a schema
+// 2nd step: You would create a model based off of that schema
 
-const noteSchema = new mongoose.Schema({
-    title:{
-        type: String,
-        required: true,
+const noteSchema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+      required: true,
     },
-    content:{
-    type:String,
-    required: true,
+    content: {
+      type: String,
+      required: true,
     },
   },
-{ timestamps: true} // createdAt and updatedAt by default 
-
+  { timestamps: true } // createdAt, updatedAt
 );
 
 const Note = mongoose.model("Note", noteSchema);
